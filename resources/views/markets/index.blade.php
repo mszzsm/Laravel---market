@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
+
+    @extends('layouts.app')
+    @section('main')
     <ul>
         @foreach($markets as $market)
             <li>
@@ -16,5 +19,7 @@
             </li>
         @endforeach
     </ul>
+    {{ $markets-> links()}}
+    @endsection
 </body>
 </html>

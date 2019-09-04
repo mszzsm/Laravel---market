@@ -14,7 +14,7 @@ class MarketController extends Controller
      */
     public function index()
     {
-       $markets = Market::all();
+       $markets = Market::orderBy('name', 'asc') -> paginate(9);
        return view('markets.index', ['markets' => $markets ]);
     }
 
@@ -25,7 +25,7 @@ class MarketController extends Controller
      */
     public function create()
     {
-        //
+        return view('markets.create');
     }
 
     /**
@@ -34,9 +34,11 @@ class MarketController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+        Market::create($request->all());
+        return redirect('markets');
     }
 
     /**
@@ -47,7 +49,7 @@ class MarketController extends Controller
      */
     public function show(Market $market)
     {
-        //
+        return view('markets.show', ['market' => $market ]);
     }
 
     /**
